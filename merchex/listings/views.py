@@ -22,15 +22,23 @@ Pour aider à la lisibilité, nous avons :
 -fait de cette chaîne une « f-string » afin que nous puissions injecter nos noms de groupes dans la chaîne en utilisant{ ... }comme placeholders.
 """
 
+def hellomvt(request):
+    bands = Band.objects.all()
+   # return render(request, 'listings/hello.html')
+   # return render(request,'listings/hello.html',{'first_band': bands[0]})
+    return render(request,'listings/hello.html',context={'bands': bands})
 def about(request):
-    return HttpResponse('<h1>À propos</h1> <p>Nous adorons merch !</p>')
-
+    # return HttpResponse('<h1>À propos</h1> <p>Nous adorons merch !</p>')
+    return render(request,'listings/about.html')
 def contact(request):
-    return HttpResponse('<h1>Contactez nous</h1> <p>En cours</p>')
+     #return HttpResponse('<h1>Contactez nous</h1> <p>En cours</p>')
+    return render(request,'listings/contact.html')
 
 def listings(request):
     listings = Listing.objects.all()
-    return HttpResponse(f"""
+    return render(request,'listings/listings.html',context={'listings': listings})
+"""
+   return HttpResponse(
         <h1>Listings !</h1>
         <p>Voici la liste :<p>
         <ul>
@@ -38,5 +46,5 @@ def listings(request):
             <li>{listings[1].title}</li>
             <li>{listings[2].title}</li>
             <li>{listings[3].title}</li>
-       </ul>
-""")
+       </ul>)
+"""
